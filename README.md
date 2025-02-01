@@ -67,3 +67,5 @@
 ### Association
 
 - belongs_to :buy-somes
+
+end
