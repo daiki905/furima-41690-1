@@ -8,11 +8,10 @@
 | last_name           | string              | null: false               |
 | first_name_katakana | string              | null: false               |
 | first_name_katakana | string              | null: false               |
+| nickname            | string              | null: false               |
 | encrypted_password  | string              | null: false               |
 | email               | string              | null: false unique: true  |
-| year                | string              | null: false               |
-| month               | string              | null: false               |
-| day                 | string              | null: false               |
+| date                | string              | null: false               |
 
 ### Association
 
@@ -24,13 +23,15 @@
 
 | Column                              | Type       | Options                        |
 |-------------------------------------|------------|--------------------------------|
-| item-name                           | string     | null: false                    |
-| item-money                          | string     | null: false                    |
-| exhibitor                           | string     | null: false                    |
-| item-status                         | string     | null: false                    |
-| payee                               | string     | null: false                    |
-| shippingsource                      | string     | null: false                    |
-| readtime                            | string     | null: false                    |
+| item_name                           | string     | null: false                    |
+| item_money                          | numeric    | null: false                    |
+| user                                | references | null: false, foreign_key: true |
+| category                            | text       | null: false                    |
+| item_manual                         | text       | null: false                    |
+| item_status_id                      | integer    | null: false                    |
+| payee_id                            | integer    | null: false                    |
+| shippingsource_id                   | integer    | null: false                    |
+| readtime_id                         | integer    | null: false                    |
 
 ### Association
 
@@ -41,27 +42,33 @@
 
 | Column      | Type       | Options                         |
 |-------------|------------|---------------------------------|
-| item-name                     | text       | null: false   |
-| item-money                    | references | null: false   |
-| purchaser-first_name          | references | null: false   |
-| purchaser-last_name           | text       | null: false   |
-| purchaser-first_name_katakana | references | null: false   |
-| purchaser-last_name_katakana  | references | null: false   |
-| purchaser-email               | references | null: false   |
+| user        | references | null: false, foreign_key: true  |
+| items       | references | null: false, foreign_key: true  |
 
 
 ### Association
 
-- belongs_to :delivery
+- has_one :deliveries
 - belongs_to :user
 
-## derivery table
+## deriveries table
 
 | Column                 | Type       | Options                        |
 |------------------------|------------|--------------------------------|
-| purchaser-postcode     | text       | null: false                    |
-| buy-somes              | references | null: false, foreign_key: true |
-| purchaser-adress       | text       | null: false,                   |
+| purchaser_postcode     | text       | null: false                    |
+| buy_somes              | references | null: false, foreign_key: true |
+| purchaser_adress       | text       | null: false,                   |
+| card_number            | text       | null: false                    |
+| buy_somes              | references | null: false, foreign_key: true |
+| purchaser_adress       | numeric    | null: false,                   |
+| card_expiry            | numeric    | null: false,                   |
+| security_code          | numeric    | null: false,                   |
+| adress_num             | numeric    | null: false,                   |
+| prefecture_id          | integer    | null: false,                   |
+| first_adress           | string     | null: false,                   |
+| second_adress          | string     | null: false,                   |
+| bulding_name           | string     | null: false,                   |
+| tel_num                | numeric    | null: false,                   |
 
 
 ### Association
