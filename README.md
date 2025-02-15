@@ -55,12 +55,8 @@
 
 | Column                 | Type       | Options                        |
 |------------------------|------------|--------------------------------|
-| purchaser_postcode     | text       | null: false                    |
 | buy_somes              | references | null: false, foreign_key: true |
-| purchaser_adress       | text       | null: false,                   |
-| card_number            | text       | null: false                    |
 | buy_somes              | references | null: false, foreign_key: true |
-| purchaser_adress       | numeric    | null: false,                   |
 | adress_num             | numeric    | null: false,                   |
 | prefecture_id          | integer    | null: false,                   |
 | first_adress           | string     | null: false,                   |
