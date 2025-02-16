@@ -36,9 +36,9 @@
 ### Association
 
 - belongs_to :user
-- belongs_to :buy_some
+- has_one :buy_some
 
-## buy-somes table
+## buy_somes table
 
 | Column      | Type       | Options                         |
 |-------------|------------|---------------------------------|
@@ -50,19 +50,19 @@
 
 - has_one :delivery
 - belongs_to :user
+  belongs_to :item
 
 ## deriveries table
 
 | Column                 | Type       | Options                        |
 |------------------------|------------|--------------------------------|
-| buy_somes              | references | null: false, foreign_key: true |
-| buy_somes              | references | null: false, foreign_key: true |
-| adress_num             | numeric    | null: false,                   |
-| prefecture_id          | integer    | null: false,                   |
-| first_adress           | string     | null: false,                   |
-| second_adress          | string     | null: false,                   |
+| buy_some               | references | null: false, foreign_key: true |
+| adress_num             | string     | null: false                    |
+| prefecture_id          | integer    | null: false                    |
+| first_adress           | string     | null: false                    |
+| second_adress          | string     | null: false                    |
 | bulding_name           | string     |                                |
-| tel_num                | string     | null: false,                   |
+| tel_num                | string     | null: false                    |
 
 
 ### Association
