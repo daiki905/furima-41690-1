@@ -13,7 +13,6 @@ RSpec.describe User, type: :model do
       it '全ての項目が正しく入力されていれば登録できる' do
         expect(@user).to be_valid
       end
-    end
   
 
 
@@ -139,4 +138,5 @@ RSpec.describe User, type: :model do
       end
 
     end
+end
 end
