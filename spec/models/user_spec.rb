@@ -37,7 +37,7 @@ RSpec.describe User, type: :model do
         end
       end
 
-      describe 'メールアドレスに関するエラーチェック' do
+      context 'メールアドレスに関するエラーチェック' do
 
         it 'メールアドレスが空では登録できない' do
           @user.email = ''
@@ -60,7 +60,7 @@ RSpec.describe User, type: :model do
         end
       end
 
-      describe 'パスワードに関するエラーチェック' do
+      context 'パスワードに関するエラーチェック' do
         it 'passwordが空では登録できない' do
           @user.password = ''
           expect(@user).not_to be_valid
@@ -98,7 +98,7 @@ RSpec.describe User, type: :model do
         end
       end
 
-      describe '名前のバリデーション' do
+      context '名前のバリデーション' do
 
         it '姓に半角文字が含まれていると登録できない' do
           @user.last_name = 'Yamada'
