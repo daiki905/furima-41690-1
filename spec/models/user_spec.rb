@@ -5,14 +5,19 @@ RSpec.describe User, type: :model do
     @user = FactoryBot.build(:user)
   end
 
-  describe 'ユーザー新規登録' do
-    it '全ての項目が正しく入力されていれば登録できる' do
-      expect(@user).to be_valid
-    end
 
-    context 'ユーザー新規登録ができない場合' do
 
-      describe '必須項目に関するエラーチェック' do
+    describe '必須項目に関するエラーチェック' 
+      context 'ユーザー新規登録ができる場合' do
+
+      it '全ての項目が正しく入力されていれば登録できる' do
+        expect(@user).to be_valid
+      end
+  
+
+
+      context 'ユーザー新規登録ができない場合' do
+
         it 'first_nameが空では登録できない' do
           @user.first_name = ''
           expect(@user).not_to be_valid
@@ -33,6 +38,7 @@ RSpec.describe User, type: :model do
       end
 
       describe 'メールアドレスに関するエラーチェック' do
+
         it 'メールアドレスが空では登録できない' do
           @user.email = ''
           expect(@user).not_to be_valid
@@ -93,6 +99,7 @@ RSpec.describe User, type: :model do
       end
 
       describe '名前のバリデーション' do
+
         it '姓に半角文字が含まれていると登録できない' do
           @user.last_name = 'Yamada'
           expect(@user).not_to be_valid
@@ -131,5 +138,4 @@ RSpec.describe User, type: :model do
       end
 
     end
-  end
 end
