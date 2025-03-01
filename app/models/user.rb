@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
          validate :password_format
 
+         has_many :items
+
          private
        
          def password_format
