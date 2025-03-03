@@ -13,6 +13,11 @@ class User < ApplicationRecord
 
          validate :password_format
 
+         extend ActiveHash::Associations::ActiveRecordExtensions
+         belongs_to :category  
+
+         has_many :items
+
          private
        
          def password_format
