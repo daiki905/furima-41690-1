@@ -26,37 +26,37 @@ RSpec.describe Item, type: :model do
       end
 
       it 'category_idが空では登録できない' do
-        @item.category_id = 1 # ここはバリデーションに合わせます（例： id 1 が未選択の状態）
+        @item.category_id = 1
         expect(@item).not_to be_valid
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
 
       it 'item_status_idが空では登録できない' do
-        @item.item_status_id = 1 # 同様に設定
+        @item.item_status_id = 1
         expect(@item).not_to be_valid
         expect(@item.errors.full_messages).to include("Item status can't be blank")
       end
 
       it 'shippingsource_idが空では登録できない' do
-        @item.shippingsource_id = 1 # 同様に設定
+        @item.shippingsource_id = 1
         expect(@item).not_to be_valid
         expect(@item.errors.full_messages).to include("Shippingsource can't be blank")
       end
 
       it 'payee_idが空では登録できない' do
-        @item.payee_id = 1 # 同様に設定
+        @item.payee_id = 1
         expect(@item).not_to be_valid
         expect(@item.errors.full_messages).to include("Payee can't be blank")
       end
 
       it 'readtime_idが空では登録できない' do
-        @item.readtime_id = 1 # 同様に設定
+        @item.readtime_id = 1
         expect(@item).not_to be_valid
         expect(@item.errors.full_messages).to include("Readtime can't be blank")
       end
 
       it 'item_moneyが空では登録できない' do
-        @item.item_money = nil # ここを nil に設定
+        @item.item_money = nil
         expect(@item).not_to be_valid
         expect(@item.errors.full_messages).to include("Item money can't be blank")
       end
