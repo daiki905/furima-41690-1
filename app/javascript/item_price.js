@@ -5,7 +5,7 @@ function calculateFees() {
 
   if (!isNaN(inputValue)) {
     const feeRate = 0.10;
-    const fee = inputValue * feeRate;
+    const fee = Math.floor(inputValue * feeRate);
     const flooredFee = Math.floor(fee);
     const addTaxDom = document.getElementById("add-tax-price");
     addTaxDom.textContent = `${flooredFee}`;
