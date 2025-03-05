@@ -10,7 +10,9 @@ class CreateItems < ActiveRecord::Migration[7.1]
      t.integer   :payee_id,    null:false
      t.integer :shippingsource_id, null:false
      t.integer   :readtime_id,    null:false 
+
     
+     
 
       t.timestamps
     end
