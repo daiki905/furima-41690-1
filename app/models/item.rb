@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   validates :payee_id,numericality: { other_than: 1 , message: "can't be blank"} 
   validates :shippingsource_id,numericality: { other_than: 1 , message: "can't be blank"} 
   validates :readtime_id,numericality: { other_than: 1 , message: "can't be blank"} 
-  belongs_to :user
+  
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :item_status
@@ -18,6 +18,9 @@ class Item < ApplicationRecord
   belongs_to :shippingsource
   belongs_to :readtime
   belongs_to :category
+  
+  has_one :buy_some
+  belongs_to :user
 
 
 
