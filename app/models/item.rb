@@ -1,12 +1,5 @@
 class Item < ApplicationRecord
-  DELIVERY_CHARGE_OPTIONS = {
-    1 => "着払い(購入者負担)",
-    2 => "配送料込み(出品者負担)"
-  }
-
-  def delivery_charge_description
-    DELIVERY_CHARGE_OPTIONS[self.payee_id]
-  end
+  
 
 
 

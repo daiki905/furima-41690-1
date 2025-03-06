@@ -134,7 +134,7 @@
             <%= link_to '#' do %>
             <div class='item-img-content'>
               <%= image_tag item.image.attached? ? item.image : 'item-sample.png', class: 'item-img' %>
-              <% end %>
+              
 
               <!-- 商品が売れていれば Sold Out を表示 -->
               
@@ -150,13 +150,15 @@
               </h3>
               <div class='item-price'>
           
-                <span><%= item.item_money %>円<br><%= item.delivery_charge_description %></span>
+              <span><%= item.item_money %>円<br><%= Payee.find(item.payee_id).name %></span>
+
                 <div class='star-btn'>
                   <%= image_tag 'star.png', class:'star-icon' %>
                   <span class='star-count'>0</span>
                 </div>
               </div>
             </div>
+            <% end %>
           </li>
         <% end %>
       <!-- //商品のインスタンス変数に何か入っている場合、中身のすべてを展開 -->
