@@ -137,11 +137,11 @@
               <% end %>
 
               <!-- 商品が売れていれば Sold Out を表示 -->
-              <% if item.buy_some.present? %>
+              
                 <div class='sold-out'>
                   <span>Sold Out!!</span>
                 </div>
-              <% end %>
+              
               <!-- //商品が売れていれば Sold Out を表示 -->
             </div>
             <div class='item-info'>
@@ -150,7 +150,7 @@
               </h3>
               <div class='item-price'>
           
-                <span><%= item.item_money %>円<br><%= item.payee_id.to_s %></span>
+                <span><%= item.item_money %>円<br><%= item.delivery_charge_description %></span>
                 <div class='star-btn'>
                   <%= image_tag 'star.png', class:'star-icon' %>
                   <span class='star-count'>0</span>

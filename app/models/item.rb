@@ -1,5 +1,16 @@
 class Item < ApplicationRecord
+  DELIVERY_CHARGE_OPTIONS = {
+    1 => "着払い(購入者負担)",
+    2 => "配送料込み(出品者負担)"
+  }
 
+  def delivery_charge_description
+    DELIVERY_CHARGE_OPTIONS[self.payee_id]
+  end
+
+
+
+  
 
   validates :item_name, presence: true
   validates :item_money, presence: true
@@ -19,7 +30,6 @@ class Item < ApplicationRecord
   belongs_to :readtime
   belongs_to :category
   
-  has_one :buy_some
   belongs_to :user
 
 
@@ -29,3 +39,4 @@ class Item < ApplicationRecord
   validates :image, presence: true
 
 end
+
