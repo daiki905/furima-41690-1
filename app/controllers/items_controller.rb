@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :find_item, only: [:edit, :update]
+  before_action :set_item, only: [:show, :edit, :update,]
   before_action :ensure_owner, only: [:edit, :update]
-  before_action :set_item, only: [:show, :edit, :update, :create]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -46,15 +46,11 @@ class ItemsController < ApplicationController
 
   
   def ensure_owner
-    @item = Item.find(params[:id])
     unless @item.user_id == current_user.id
       redirect_to root_path, notice: 'このページにはアクセスできません。'
     end
   end
 
-  def find_item
-    @item = Item.find_by(id: params[:id])
-  end
 
   def redirect_if_not_seller
     if @item.nil? || @item.user != current_user
