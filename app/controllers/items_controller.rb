@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update]
+  before_action :ensure_owner, only: [:edit, :update]
+
   def index
     @items = Item.order(created_at: :desc)
   end
@@ -19,11 +22,33 @@ class ItemsController < ApplicationController
   end
   
   def show
-    @item = Item.find(params[:id])
     @user = @item.user
   end
 
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to @item, notice: '商品情報が更新されました。'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  
+
   private
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  
+  def ensure_owner
+    unless @item.user_id == current_user.id
+      redirect_to root_path, notice: 'このページにはアクセスできません。'
+    end
+  end
   
   def item_params
     params.require(:item).permit(:item_name, :item_money, :item_manual, :category_id, :item_status_id, :shippingsource_id, :payee_id, :readtime_id, :image).merge(user_id: current_user.id)
