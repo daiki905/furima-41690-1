@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :find_item, only: [:edit, :update]
-  before_action :set_item, only: [:show, :edit, :update,]
+  before_action :set_item, only: [:show, :edit, :update]
   before_action :ensure_owner, only: [:edit, :update]
 
   def index
@@ -48,13 +47,6 @@ class ItemsController < ApplicationController
   def ensure_owner
     unless @item.user_id == current_user.id
       redirect_to root_path, notice: 'このページにはアクセスできません。'
-    end
-  end
-
-
-  def redirect_if_not_seller
-    if @item.nil? || @item.user != current_user
-      redirect_to root_path, alert: '他のユーザーの商品情報は編集できません。'
     end
   end
   
