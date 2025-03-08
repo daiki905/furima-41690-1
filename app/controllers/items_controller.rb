@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
   before_action :find_item, only: [:edit, :update]
-  before_action :authenticate_user!, only: [:edit, :update]
   before_action :ensure_owner, only: [:edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :create]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -23,12 +23,10 @@ class ItemsController < ApplicationController
   end
   
   def show
-    @item = Item.find(params[:id])
     @user = @item.user
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -42,6 +40,9 @@ class ItemsController < ApplicationController
   
 
   private
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   
   def ensure_owner
@@ -53,10 +54,6 @@ class ItemsController < ApplicationController
 
   def find_item
     @item = Item.find_by(id: params[:id])
-    unless @item
-      redirect_to root_path, alert: '商品が見つかりません。'
-      return
-    end
   end
 
   def redirect_if_not_seller
