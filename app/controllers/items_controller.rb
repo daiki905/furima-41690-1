@@ -58,7 +58,6 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:item_name, :item_money, :item_manual, :category_id, :item_status_id, :shippingsource_id, :payee_id, :readtime_id, :image).merge(user_id: current_user.id)
   end
-  end
 
 
   private
@@ -66,3 +65,4 @@ class ItemsController < ApplicationController
   def message_params
     params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
   end
+end
