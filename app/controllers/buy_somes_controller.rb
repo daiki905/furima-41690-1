@@ -1,2 +1,3 @@
 class BuySomesController < ApplicationController
+  
 end
