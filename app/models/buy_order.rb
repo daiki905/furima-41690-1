@@ -5,11 +5,11 @@ class BuyOrder
   with_options presence: true do
     validates :user_id
     validates :item_id
-    validates :adress_num
+    validates :adress_num, format: { with: /\A\d{3}-\d{4}\z/, message: 'は「3桁-4桁」の形式で入力してください。' }
     validates :prefecture_id
     validates :first_adress
     validates :second_adress
-    validates :tel_num
+    validates :tel_num, format: { with: /\A\d{10,11}\z/, message: 'は「10桁から11桁の半角数値」で入力してください。' }
     validates :token
   end
 
