@@ -9,7 +9,9 @@ class BuyOrder
     validates :prefecture_id
     validates :first_adress
     validates :second_adress
-    validates :tel_num, format: { with: /\A\d{10,11}\z/, message: 'は「10桁から11桁の半角数値」で入力してください。' }
+    validates :tel_num, presence: { message: "can't be blank" }, format: { with: /\A\d{10,11}\z/, message: 'は「10桁から11桁の半角数値」で入力してください。' }
+
+  belongs_to :buy_some
     validates :token
   end
 
