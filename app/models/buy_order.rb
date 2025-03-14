@@ -6,13 +6,15 @@ class BuyOrder
     validates :user_id
     validates :item_id
     validates :adress_num, format: { with: /\A\d{3}-\d{4}\z/, message: 'は「3桁-4桁」の形式で入力してください。' }
-    validates :prefecture_id
+    validates :prefecture_id,numericality: { other_than: 1 , message: "can't be blank"} 
     validates :first_adress
     validates :second_adress
     validates :tel_num, presence: { message: "can't be blank" }, format: { with: /\A\d{10,11}\z/, message: 'は「10桁から11桁の半角数値」で入力してください。' }
+    validates :token, presence: true
+
+  
 
 
-    validates :token
   end
 
   def save
