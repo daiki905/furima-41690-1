@@ -69,7 +69,7 @@ RSpec.describe BuyOrder, type: :model do
       end
 
       it '電話番号が半角数値でなければ登録できない' do
-        @buy_order.tel_num = ""
+        @buy_order.tel_num = "0901234567９"
         @buy_order.valid?
         expect(@buy_order.errors.full_messages).to include("Tel num は「10桁から11桁の半角数値」で入力してください。")
       end
