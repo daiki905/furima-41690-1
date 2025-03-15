@@ -1,0 +1,2 @@
+module BuySomesHelper
+end

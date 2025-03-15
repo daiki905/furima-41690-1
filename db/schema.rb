@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_01_171956) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_09_095540) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,28 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_171956) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "buy_somes", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_buy_somes_on_item_id"
+    t.index ["user_id"], name: "index_buy_somes_on_user_id"
+  end
+
+  create_table "deliveries", charset: "utf8mb3", force: :cascade do |t|
+    t.string "adress_num", null: false
+    t.integer "prefecture_id", null: false
+    t.string "first_adress", null: false
+    t.string "second_adress", null: false
+    t.string "bulding_name"
+    t.string "tel_num", null: false
+    t.bigint "buy_some_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buy_some_id"], name: "index_deliveries_on_buy_some_id"
   end
 
   create_table "items", charset: "utf8mb3", force: :cascade do |t|
@@ -74,5 +96,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_01_171956) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "buy_somes", "items"
+  add_foreign_key "buy_somes", "users"
+  add_foreign_key "deliveries", "buy_somes"
   add_foreign_key "items", "users"
 end

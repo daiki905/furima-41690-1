@@ -22,14 +22,15 @@ class Item < ApplicationRecord
   belongs_to :shippingsource
   belongs_to :readtime
   belongs_to :category
-  
   belongs_to :user
-
+  has_one :buy_some
 
 
   has_one_attached :image
 
   validates :image, presence: true
+
+  
 
 end
 
