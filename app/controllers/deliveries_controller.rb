@@ -41,7 +41,7 @@ class DeliveriesController < ApplicationController
   end
 
   def buy_order_params
-    params.require(:buy_order).permit(:adress_num, :prefecture_id, :first_adress, :second_adress, :bulding_name, :tel_num, :token)
+    params.require(:buy_order).permit(:adress_num, :prefecture_id, :first_adress, :second_adress, :bulding_name, :tel_num)
           .merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
