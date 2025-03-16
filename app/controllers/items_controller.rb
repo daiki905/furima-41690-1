@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :ensure_owner, only: [:edit, :update, :destroy]
+  before_action :prevent_url, only: [:edit]
 
   def index
     @items = Item.order(created_at: :desc)
@@ -43,6 +44,8 @@ class ItemsController < ApplicationController
 
   
 
+  
+
   private
   def set_item
     @item = Item.find(params[:id])
@@ -58,6 +61,11 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:item_name, :item_money, :item_manual, :category_id, :item_status_id, :shippingsource_id, :payee_id, :readtime_id, :image).merge(user_id: current_user.id)
   end
+
+  def prevent_url
+    if @item.user_id != current_user.id || @item.buy_some != nil 
+      redirect_to root_path
+    end
   end
 
 
@@ -66,3 +74,4 @@ class ItemsController < ApplicationController
   def message_params
     params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
   end
+end
